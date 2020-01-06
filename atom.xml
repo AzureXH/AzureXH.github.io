@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-06T09:17:43.875Z</updated>
+  <updated>2020-01-06T09:22:59.730Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,16 @@
     <link href="http://yoursite.com/2020/01/06/Leetcode-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E4%B8%8E%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/"/>
     <id>http://yoursite.com/2020/01/06/Leetcode-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E4%B8%8E%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/</id>
     <published>2020-01-06T08:53:12.000Z</published>
-    <updated>2020-01-06T09:17:43.875Z</updated>
+    <updated>2020-01-06T09:22:59.730Z</updated>
     
-    <content type="html"><![CDATA[<p>两道题都用了双指针走的路径长度是否相等来解决，所以记录一下。</p><h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><p>给定一个链表，判断链表中是否有环。</p><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png" alt="环形链表示意图"></p><h2 id="方法一-哈希表"><a href="#方法一-哈希表" class="headerlink" title="方法一(哈希表)"></a>方法一(哈希表)</h2><ol><li>遍历链表，将所有节点的地址记录到哈希表中</li><li>若存在环，则哈希表中会有对应的地址</li><li>若不存在环，会遍历到NULL位置</li></ol><h2 id="方法二-快慢指针"><a href="#方法二-快慢指针" class="headerlink" title="方法二(快慢指针)"></a>方法二(快慢指针)</h2><ol><li>利用两个指针，slow和fast</li><li>slow指针每次只走一步，fast指针每次走两步</li><li>若存在环，则fast指针必定能追上slow指针</li><li>若不存在环，fast指针会走到NULL位置</li></ol><h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><p>编写一个程序，找到两个单链表相交的起始节点。</p><p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" alt="相交链表示意图"></p><h2 id="方法一-暴力遍历"><a href="#方法一-暴力遍历" class="headerlink" title="方法一(暴力遍历)"></a>方法一(暴力遍历)</h2><ol><li>类似于双层for循环，只要找到相等的地址即可</li></ol><h2 id="方法二-哈希表"><a href="#方法二-哈希表" class="headerlink" title="方法二(哈希表)"></a>方法二(哈希表)</h2><ol><li>如环形链表一样，遍历两个链表，将地址全部放入哈希表中</li><li>若相交，则哈希表中可以找到相等地址</li></ol><h2 id="方法三-双指针"><a href="#方法三-双指针" class="headerlink" title="方法三(双指针)"></a>方法三(双指针)</h2><p>看图容易理解</p><p>  <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/</a></p><ol><li>将两个链表看成三块</li><li>链表A中分为 AX，C</li><li>链表B中分为 BX，C</li><li>C是两个链表中相交的部分</li><li>让两个指针遍历</li><li>若相交<ol><li>则有指针PA的路径 s1 = AX+C+BX</li><li>PB的路径 s2 = BX+C+AX</li><li>所以s1 = s2，与环形链表类似</li></ol></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>两道题都用了双指针走的路径长度是否相等来解决，所以记录一下。</p><h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/linked-list-cycle/</a></p><p>给定一个链表，判断链表中是否有环。</p><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png" alt="环形链表示意图"></p><h2 id="方法一-哈希表"><a href="#方法一-哈希表" class="headerlink" title="方法一(哈希表)"></a>方法一(哈希表)</h2><ol><li>遍历链表，将所有节点的地址记录到哈希表中</li><li>若存在环，则哈希表中会有对应的地址</li><li>若不存在环，会遍历到NULL位置</li></ol><h2 id="方法二-快慢指针"><a href="#方法二-快慢指针" class="headerlink" title="方法二(快慢指针)"></a>方法二(快慢指针)</h2><ol><li>利用两个指针，slow和fast</li><li>slow指针每次只走一步，fast指针每次走两步</li><li>若存在环，则fast指针必定能追上slow指针</li><li>若不存在环，fast指针会走到NULL位置</li></ol><h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><p><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/</a></p><p>编写一个程序，找到两个单链表相交的起始节点。</p><p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" alt="相交链表示意图"></p><h2 id="方法一-暴力遍历"><a href="#方法一-暴力遍历" class="headerlink" title="方法一(暴力遍历)"></a>方法一(暴力遍历)</h2><ol><li>类似于双层for循环，只要找到相等的地址即可</li></ol><h2 id="方法二-哈希表"><a href="#方法二-哈希表" class="headerlink" title="方法二(哈希表)"></a>方法二(哈希表)</h2><ol><li>如环形链表一样，遍历两个链表，将地址全部放入哈希表中</li><li>若相交，则哈希表中可以找到相等地址</li></ol><h2 id="方法三-双指针"><a href="#方法三-双指针" class="headerlink" title="方法三(双指针)"></a>方法三(双指针)</h2><p>看图容易理解</p><p>  <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/</a></p><ol><li>将两个链表看成三块</li><li>链表A中分为 AX，C</li><li>链表B中分为 BX，C</li><li>C是两个链表中相交的部分</li><li>让两个指针PA、PB遍历A、B，走到NULL时，重新定向到B、A，继续遍历</li><li>若相交<ol><li>则有指针PA的路径 s1 = AX+C+BX</li><li>PB的路径 s2 = BX+C+AX</li><li>所以s1 = s2，与环形链表类似</li></ol></li></ol>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;两道题都用了双指针走的路径长度是否相等来解决，所以记录一下。&lt;/p&gt;
-&lt;h1 id=&quot;环形链表&quot;&gt;&lt;a href=&quot;#环形链表&quot; class=&quot;headerlink&quot; title=&quot;环形链表&quot;&gt;&lt;/a&gt;环形链表&lt;/h1&gt;&lt;p&gt;给定一个链表，判断链表中是否有环。&lt;/p&gt;
-&lt;p
+&lt;h1 id=&quot;环形链表&quot;&gt;&lt;a href=&quot;#环形链表&quot; class=&quot;headerlink&quot; title=&quot;环形链表&quot;&gt;&lt;/a&gt;环形链表&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcod
       
     
     </summary>

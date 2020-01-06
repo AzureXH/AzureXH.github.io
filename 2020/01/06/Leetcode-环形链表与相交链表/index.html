@@ -13,8 +13,9 @@ ga('create', 'UA-00000000-0', 'auto');
 ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.1.0"><link rel="alternate" href="/atom.xml" title="Azure XH" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/">Azure XH</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="https://github.com/AzureXH" target="_blank">GITHUB</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h3 class="article__title">Leetcode-环形链表与相交链表</h3><div class="article__date metadata"><div class="post-info">2020/01/06</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/Leetcode%E7%AE%80%E5%8D%95%E9%A2%98/">Leetcode简单题</a><a class="article__tags__link metadata" href="/tags/Leetcode%E9%93%BE%E8%A1%A8%E9%A2%98/">Leetcode链表题</a></div><div class="article__body"><p>两道题都用了双指针走的路径长度是否相等来解决，所以记录一下。</p>
-<h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><p>给定一个链表，判断链表中是否有环。</p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png" alt="环形链表示意图"></p>
+<h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/linked-list-cycle/</a></p>
+<p>给定一个链表，判断链表中是否有环。</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png" alt="环形链表示意图"></p>
 <h2 id="方法一-哈希表"><a href="#方法一-哈希表" class="headerlink" title="方法一(哈希表)"></a>方法一(哈希表)</h2><ol>
 <li>遍历链表，将所有节点的地址记录到哈希表中</li>
 <li>若存在环，则哈希表中会有对应的地址</li>
@@ -26,7 +27,8 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.1.0"><lin
 <li>若存在环，则fast指针必定能追上slow指针</li>
 <li>若不存在环，fast指针会走到NULL位置</li>
 </ol>
-<h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><p>编写一个程序，找到两个单链表相交的起始节点。</p>
+<h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><p><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/</a></p>
+<p>编写一个程序，找到两个单链表相交的起始节点。</p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" alt="相交链表示意图"></p>
 <h2 id="方法一-暴力遍历"><a href="#方法一-暴力遍历" class="headerlink" title="方法一(暴力遍历)"></a>方法一(暴力遍历)</h2><ol>
 <li>类似于双层for循环，只要找到相等的地址即可</li>
@@ -42,7 +44,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.1.0"><lin
 <li>链表A中分为 AX，C</li>
 <li>链表B中分为 BX，C</li>
 <li>C是两个链表中相交的部分</li>
-<li>让两个指针遍历</li>
+<li>让两个指针PA、PB遍历A、B，走到NULL时，重新定向到B、A，继续遍历</li>
 <li>若相交<ol>
 <li>则有指针PA的路径 s1 = AX+C+BX</li>
 <li>PB的路径 s2 = BX+C+AX</li>
