@@ -61,9 +61,9 @@
     
     
     
-      <category term="Leetcode简单题" scheme="http://yoursite.com/tags/Leetcode%E7%AE%80%E5%8D%95%E9%A2%98/"/>
-    
       <category term="Leetcode链表题" scheme="http://yoursite.com/tags/Leetcode%E9%93%BE%E8%A1%A8%E9%A2%98/"/>
+    
+      <category term="Leetcode简单题" scheme="http://yoursite.com/tags/Leetcode%E7%AE%80%E5%8D%95%E9%A2%98/"/>
     
   </entry>
   
