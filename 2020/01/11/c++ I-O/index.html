@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="/logo.png"/>
         <link rel="canonical" href="http://guolinn.com/">
         <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
-        <title>Leetcode-环形链表与相交链表 | Azure XH</title>
+        <title>c++ I/O | Azure XH</title>
         <meta name="description" content="{{meta_description}}">
 
         <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -41,60 +41,43 @@
         
 
 <article class="post">
-  January 6, 2020
+  January 11, 2020
   
     <span class="taglist">  &middot; 
     
     
-      <a href='/tags/Leetcode链表题/'>Leetcode链表题</a> 
-    
-      <a href='/tags/Leetcode简单题/'>Leetcode简单题</a> 
+      <a href='/tags/c/'>c++</a> 
     
     </span>
   
 
-  <h1 class="post-title">Leetcode-环形链表与相交链表</h1>
+  <h1 class="post-title">c++ I/O</h1>
   <section class="post-content article-entry">
-    <p>两道题都用了双指针走的路径长度是否相等来解决，所以记录一下。</p>
-<h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/linked-list-cycle/</a></p>
-<p>给定一个链表，判断链表中是否有环。</p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png" alt="环形链表示意图"></p>
-<h2 id="方法一-哈希表"><a href="#方法一-哈希表" class="headerlink" title="方法一(哈希表)"></a>方法一(哈希表)</h2><ol>
-<li>遍历链表，将所有节点的地址记录到哈希表中</li>
-<li>若存在环，则哈希表中会有对应的地址</li>
-<li>若不存在环，会遍历到NULL位置</li>
-</ol>
-<h2 id="方法二-快慢指针"><a href="#方法二-快慢指针" class="headerlink" title="方法二(快慢指针)"></a>方法二(快慢指针)</h2><ol>
-<li>利用两个指针，slow和fast</li>
-<li>slow指针每次只走一步，fast指针每次走两步</li>
-<li>若存在环，则fast指针必定能追上slow指针</li>
-<li>若不存在环，fast指针会走到NULL位置</li>
-</ol>
-<h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><p><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/</a></p>
-<p>编写一个程序，找到两个单链表相交的起始节点。</p>
-<p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" alt="相交链表示意图"></p>
-<h2 id="方法一-暴力遍历"><a href="#方法一-暴力遍历" class="headerlink" title="方法一(暴力遍历)"></a>方法一(暴力遍历)</h2><ol>
-<li>类似于双层for循环，只要找到相等的地址即可</li>
-</ol>
-<h2 id="方法二-哈希表"><a href="#方法二-哈希表" class="headerlink" title="方法二(哈希表)"></a>方法二(哈希表)</h2><ol>
-<li>如环形链表一样，遍历两个链表，将地址全部放入哈希表中</li>
-<li>若相交，则哈希表中可以找到相等地址</li>
-</ol>
-<h2 id="方法三-双指针"><a href="#方法三-双指针" class="headerlink" title="方法三(双指针)"></a>方法三(双指针)</h2><p>看图容易理解</p>
-<p>  <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/</a></p>
-<ol>
-<li>将两个链表看成三块</li>
-<li>链表A中分为 AX，C</li>
-<li>链表B中分为 BX，C</li>
-<li>C是两个链表中相交的部分</li>
-<li>让两个指针PA、PB遍历A、B，走到NULL时，重新定向到B、A，继续遍历</li>
-<li>若相交<ol>
-<li>则有指针PA的路径 s1 = AX+C+BX</li>
-<li>PB的路径 s2 = BX+C+AX</li>
-<li>所以s1 = s2，与环形链表类似</li>
-</ol>
-</li>
-</ol>
+    <p>摘抄于 <a href="https://www.geeksforgeeks.org/basic-input-output-c/" target="_blank" rel="noopener">geeksforgeeks</a></p>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><h3 id="iostream"><a href="#iostream" class="headerlink" title="iostream"></a>iostream</h3><ul>
+<li>用于标准的输入输出流</li>
+<li>包含了cin,cout,cerr函数</li>
+</ul>
+<h3 id="iomanip"><a href="#iomanip" class="headerlink" title="iomanip"></a>iomanip</h3><ul>
+<li>I/O manipulators</li>
+<li>用于操作流的输出</li>
+<li>包含了setw, setprecision函数</li>
+</ul>
+<h3 id="fstream"><a href="#fstream" class="headerlink" title="fstream"></a>fstream</h3><ul>
+<li>用于文件流 file stream</li>
+<li>用于处理从文件中作为input，读入数据</li>
+<li>也可用于写入文件作为ouput</li>
+</ul>
+<h4 id="cerr"><a href="#cerr" class="headerlink" title="cerr"></a>cerr</h4><ul>
+<li>不经过缓存的标准错误流</li>
+<li>用于输出错误，同时也是一个ostream类的实例</li>
+<li>当需要立即展示错误信息时可以使用这个函数</li>
+</ul>
+<h4 id="clog"><a href="#clog" class="headerlink" title="clog"></a>clog</h4><ul>
+<li>经过缓存的错误流</li>
+<li>也是一个iostream类的实例，用于输出错误</li>
+<li>但与cerr不同的是，错误会首先插入到缓存中，并且存储在缓存中直到缓存被充满为止后放出。</li>
+</ul>
 
   </section>
   <footer class="post-footer">
@@ -109,14 +92,14 @@
 
 <nav class="pagination" role="pagination">
     
-    <a class="newer-posts" href="/2020/01/07/%E4%BA%8C%E5%8F%89%E6%A0%91/">
-        ← prev <!--二叉树-->
+    <a class="newer-posts" href="/2020/01/11/c++%20%E8%BF%AD%E4%BB%A3%E5%99%A8/">
+        ← prev <!--c++ 迭代器-->
     </a>
     
     <span class="page-number">•</span>
     
-    <a class="older-posts" href="/2019/12/24/Leetcode-%E9%93%BE%E8%A1%A8%E9%A2%98/">
-        <!--Leetcode-链表--> next →
+    <a class="older-posts" href="/2020/01/07/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+        <!--二叉树--> next →
     </a>
     
 </nav>
