@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <link rel="shortcut icon" href="/logo.png"/>
+        <link rel="canonical" href="http://guolinn.com/">
+        <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
+        <title>c++ static关键字 | Azure XH</title>
+        <meta name="description" content="{{meta_description}}">
+
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/styles/crisp.css">
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <meta name="generator" content="Hexo 4.1.0"></head>
+    
+		<body class="post-template">
+	
+
+        <header id="header">
+            <a id="logo" href="/"><img src="/logo.png" alt="Azure XH" /></a>
+            <h1><a href="/">AzureXH</a></h1>
+            <p></p>
+            <div id="follow-icons">
+          <a href="http://github.com/https://github.com/AzureXH" target="_blank" rel="noopener"><i class="fa fa-github-square fa-2x"></i></a>
+          </div>
+<h6><a href="/about">About</a></h6>
+        </header>
+
+        <main id="content">
+        
+
+<article class="post">
+  January 11, 2020
+  
+    <span class="taglist">  &middot; 
+    
+    
+      <a href='/tags/c/'>c++</a> 
+    
+    </span>
+  
+
+  <h1 class="post-title">c++ static关键字</h1>
+  <section class="post-content article-entry">
+    <p>摘抄至<a href="https://www.geeksforgeeks.org/static-keyword-cpp/" target="_blank" rel="noopener">geeksforgeeks</a></p>
+<h2 id="函数中的静态变量"><a href="#函数中的静态变量" class="headerlink" title="函数中的静态变量"></a>函数中的静态变量</h2><p>当一个变量被声明为静态的时，它的空间就会被分配持续整个程序的生命周期</p>
+<p>即使该函数被调用多次，静态变量的空间也只会被分配一次，并且该静态变量的值会一直持续到下一次函数调用</p>
+<p>在实现协程或其他需要保存函数之前的状态的应用时会很有用</p>
+<h2 id="类中的静态变量"><a href="#类中的静态变量" class="headerlink" title="类中的静态变量"></a>类中的静态变量</h2><p>当这些静态变量被分配了静态的存储空间后，他们只会被初始化一次</p>
+<p>同一个类中的静态变量会被该类的所有实例共享</p>
+<p>所以不会有不同实例对象有着不同的静态变量的值</p>
+<p>并且由于这个原因，该静态变量不能够被构造器初始化(因为构造器构造的是实例对象，实例对象是共享的这些静态变量)</p>
+<p>所以，类中的静态变量应该被用户，使用类名与范围解析运算符，显式地初始化</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GfG</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i; </span><br><span class="line">      </span><br><span class="line">    GfG() </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="comment">// Do nothing </span></span><br><span class="line">    &#125;; </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="comment">//在这里初始化</span></span><br><span class="line"><span class="keyword">int</span> GfG::i = <span class="number">1</span>; </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    GfG obj; </span><br><span class="line">    <span class="comment">// prints value of i </span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; obj.i;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类的静态实例"><a href="#类的静态实例" class="headerlink" title="类的静态实例"></a>类的静态实例</h2><p>与静态变量一样，初始化后会在整个程序的生命周期存在</p>
+<h2 id="类中的静态函数"><a href="#类中的静态函数" class="headerlink" title="类中的静态函数"></a>类中的静态函数</h2><p>静态成员函数只允许访问静态变量或其他的静态函数</p>
+<p>可以被类直接引用，无需实例对象引用</p>
+
+  </section>
+  <footer class="post-footer">
+    <!--
+    <section class="author">
+      <h4>AzureXH</h4>
+      <p></p>
+    </section>
+    -->
+  </footer>
+</article>
+
+<nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2020/01/11/c++%20%E8%BF%AD%E4%BB%A3%E5%99%A8/">
+        <!--c++ 迭代器--> next →
+    </a>
+    
+</nav>
+<div id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'AzureXH';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" target="_blank" rel="noopener" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+        </main>
+        <footer id="footer">
+            <section id="footer-message">&copy; 2020 AzureXH. All rights reserved. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. <a href="https://github.com/guolin/crisp-hexo-theme" target="_blank">crisp</a> theme by <a href="https://github.com/guolin/crisp-hexo-theme" target="_blank">Guo Lin</a>.</section>
+        </footer>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','/js/ga.js','ga');
+            ga('create', 'UA-00000000-0', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>
+
+
