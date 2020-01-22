@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <link rel="shortcut icon" href="/logo.png"/>
+        <link rel="canonical" href="http://guolinn.com/">
+        <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
+        <title>Leetcode-移动零与移除元素 | Azure XH</title>
+        <meta name="description" content="{{meta_description}}">
+
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/styles/crisp.css">
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <meta name="generator" content="Hexo 4.1.0"></head>
+    
+		<body class="post-template">
+	
+
+        <header id="header">
+            <a id="logo" href="/"><img src="/logo.png" alt="Azure XH" /></a>
+            <h1><a href="/">AzureXH</a></h1>
+            <p></p>
+            <div id="follow-icons">
+          <a href="http://github.com/https://github.com/AzureXH" target="_blank" rel="noopener"><i class="fa fa-github-square fa-2x"></i></a>
+          </div>
+<h6><a href="/about">About</a></h6>
+        </header>
+
+        <main id="content">
+        
+
+<article class="post">
+  January 14, 2020
+  
+    <span class="taglist">  &middot; 
+    
+    
+      <a href='/tags/Leetcode简单题/'>Leetcode简单题</a> 
+    
+    </span>
+  
+
+  <h1 class="post-title">Leetcode-移动零与移除元素</h1>
+  <section class="post-content article-entry">
+    <h2 id="移动零"><a href="#移动零" class="headerlink" title="移动零"></a>移动零</h2><p><a href="https://leetcode-cn.com/problems/move-zeroes/" target="_blank" rel="noopener">题目</a></p>
+<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<pre><code>示例:
+
+输入: [0,1,0,3,12]
+
+输出: [1,3,12,0,0]</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lastNum = <span class="number">0</span>;    <span class="comment">//慢指针确定搬运的位置</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;nums.size();i++)    <span class="comment">//快指针搜索符合条件的数值的位置</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i]!=<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            nums[lastNum] = nums[i];</span><br><span class="line">            lastNum++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lastNum;i&lt;nums.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        nums[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h2><p><a href="https://leetcode-cn.com/problems/remove-element/" target="_blank" rel="noopener">题目</a></p>
+<p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
+<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<pre><code>nums = [3,2,2,3], val = 3,
+函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> loc = <span class="number">0</span>;    <span class="comment">//慢指针确定要搬运的位置</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;nums.size();i++)    <span class="comment">//i为快指针用于搜索符合条件的数值的位置</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i]!=val)</span><br><span class="line">        &#123;</span><br><span class="line">            nums[loc] = nums[i];</span><br><span class="line">            loc++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> loc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这两道题比较像，所以放在一起记了，共同点是都利用了双指针，一个快指针一个慢指针，快指针用于搜索符合条件的数值的位置，慢指针用于确定数字要搬运的位置。</p>
+
+  </section>
+  <footer class="post-footer">
+    <!--
+    <section class="author">
+      <h4>AzureXH</h4>
+      <p></p>
+    </section>
+    -->
+  </footer>
+</article>
+
+<nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2020/01/14/c++%20const%E4%B8%8E%E6%8C%87%E9%92%88/">
+        ← prev <!--c++ const与指针-->
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2020/01/11/c++%20static%E5%85%B3%E9%94%AE%E5%AD%97/">
+        <!--c++ static关键字--> next →
+    </a>
+    
+</nav>
+<div id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'AzureXH';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" target="_blank" rel="noopener" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+        </main>
+        <footer id="footer">
+            <section id="footer-message">&copy; 2020 AzureXH. All rights reserved. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. <a href="https://github.com/guolin/crisp-hexo-theme" target="_blank">crisp</a> theme by <a href="https://github.com/guolin/crisp-hexo-theme" target="_blank">Guo Lin</a>.</section>
+        </footer>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','/js/ga.js','ga');
+            ga('create', 'UA-00000000-0', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>
+
+

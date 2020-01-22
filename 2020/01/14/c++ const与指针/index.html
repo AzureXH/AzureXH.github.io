@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="/logo.png"/>
         <link rel="canonical" href="http://guolinn.com/">
         <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
-        <title>Leetcode-链表 | Azure XH</title>
+        <title>c++ const与指针 | Azure XH</title>
         <meta name="description" content="{{meta_description}}">
 
         <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -41,35 +41,26 @@
         
 
 <article class="post">
-  December 24, 2019
+  January 14, 2020
   
     <span class="taglist">  &middot; 
     
     
-      <a href='/tags/Leetcode链表题/'>Leetcode链表题</a> 
+      <a href='/tags/c/'>c++</a> 
     
     </span>
   
 
-  <h1 class="post-title">Leetcode-链表</h1>
+  <h1 class="post-title">c++ const与指针</h1>
   <section class="post-content article-entry">
-    <h1 id="Leetcode链表的定义"><a href="#Leetcode链表的定义" class="headerlink" title="Leetcode链表的定义"></a>Leetcode链表的定义</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line"></span><br><span class="line">    ListNode(<span class="keyword">int</span> x) : val(x), next(<span class="literal">NULL</span>) &#123;&#125; <span class="comment">//构造函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ol>
-<li><p>先获取指向整条链表的头指针</p>
-<p> ListNode *head = new ListNode(-1);</p>
-</li>
-<li><p>定义一个遍历该链表的指针</p>
-<p> ListNode *p = head;</p>
-</li>
-<li><p>用p来构造该链表，假设输入为 3-&gt;4-2</p>
-</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">p-&gt;next = <span class="keyword">new</span> ListNode(<span class="number">3</span>);</span><br><span class="line">p = p-&gt;next;</span><br><span class="line"></span><br><span class="line">p-&gt;next = <span class="keyword">new</span> ListNode(<span class="number">4</span>);</span><br><span class="line">p = p-&gt;next;</span><br><span class="line"></span><br><span class="line">p-&gt;next = <span class="keyword">new</span> ListNode(<span class="number">2</span>);</span><br><span class="line">p = p-&gt;next;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>调用函数修改指针时，用head指针作为实参代入</li>
-</ol>
+    <h2 id="指向常量的指针-Pointer-to-const-value"><a href="#指向常量的指针-Pointer-to-const-value" class="headerlink" title="指向常量的指针(Pointer to const value)"></a>指向常量的指针(Pointer to const value)</h2><p>const int* ptr 为指向常量的指针，可以用常量赋值，也可以用非常量赋值，但是赋值后，会将所赋值的变量视为常量，<em>重点在于该指针无法修改</em> <strong>指向的变量的内容</strong></p>
+<h2 id="常量指针-Constant-pointers"><a href="#常量指针-Constant-pointers" class="headerlink" title="常量指针(Constant pointers)"></a>常量指针(Constant pointers)</h2><p>int* const ptr为常量指针，该指针被初始化后，<strong>无法</strong>再改变它<strong>所指向的地址</strong>，但还是可以像一个正常的指针一样，<strong>可以修改指向的变量的内容的</strong>。</p>
+<h2 id="指向常量的常量指针-Const-pointer-to-a-const-value"><a href="#指向常量的常量指针-Const-pointer-to-a-const-value" class="headerlink" title="指向常量的常量指针(Const pointer to a const value)"></a>指向常量的常量指针(Const pointer to a const value)</h2><p>const int* const ptr</p>
+<p>上面二者的综合</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>只要*号紧靠左边写就很好读了。</p>
+<p>T* ptr表示ptr为指向变量类型为T的指针，再根据const的位置判断。</p>
+<p>如果const 在T*的左边，说明const修饰的是T，即指向的变量为常量。</p>
+<p>如果const 在T*的右边，直接读成 const ptr，说明const修饰的是ptr，即指针是常量。</p>
 
   </section>
   <footer class="post-footer">
@@ -84,14 +75,14 @@
 
 <nav class="pagination" role="pagination">
     
-    <a class="newer-posts" href="/2020/01/06/Leetcode-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E4%B8%8E%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/">
-        ← prev <!--Leetcode-环形链表与相交链表-->
+    <a class="newer-posts" href="/2020/01/22/Leetcode-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%E7%9A%84%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95/">
+        ← prev <!--Leetcode-反转链表的递归方法-->
     </a>
     
     <span class="page-number">•</span>
     
-    <a class="older-posts" href="/2019/12/23/Leetcode-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">
-        <!--Leetcode-整数反转--> next →
+    <a class="older-posts" href="/2020/01/14/Leetcode-%E7%A7%BB%E5%8A%A8%E9%9B%B6%E4%B8%8E%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
+        <!--Leetcode-移动零与移除元素--> next →
     </a>
     
 </nav>
