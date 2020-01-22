@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2020-01-22T16:48:16.427Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/01/14/c++%20const%E4%B8%8E%E6%8C%87%E9%92%88/</loc>
     
     <lastmod>2020-01-22T16:37:10.093Z</lastmod>
