@@ -46,7 +46,26 @@
 
   <h1 class="post-title">TCP四次挥手</h1>
   <section class="post-content article-entry">
-    
+    <p><img src="https://img-blog.csdn.net/20170305155824486?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTEZfMjAxNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<ul>
+<li>客户端A发送一个FIN，用来关闭客户A到服务器B的数据传送。</li>
+<li>服务器B收到这个FIN，它发回一个ACK，确认序号为收到的序号加1。和SYN一样，一个FIN将占用一个序号。</li>
+</ul>
+<p>因为客户端A已经确定要关闭连接，所以此时客户端A不往服务器B发送数据，但是服务器B可能还是会发送数据给客户端A，所以要让服务器B关闭客户端A的连接</p>
+<p>所以客户端A请求关闭连接只是单方面的关闭，不代表说服务器B就想要关闭连接了</p>
+<ul>
+<li>服务器B关闭与客户端A的连接，发送一个FIN给客户端A。</li>
+<li>客户端A发回ACK报文确认，并将确认序号设置为收到序号加1。</li>
+</ul>
+<p>客户端A收到服务器B发送的FIN信号后，需要等待2MSL，</p>
+<ul>
+<li>原因：<ul>
+<li>保证客户端ACK报文能够到达服务器B，如果ACK报文没有到达服务器B，服务器B会认为客户端A没有收到服务器B第三步的FIN信号，于是服务器B会超时重传这个FIN信号。如果不等待2MSL，直接关闭，那么ACK报文可能就丢失了。</li>
+<li>MSL是Maximum Segment Lifetime，报文最大生存时间，等待2MSL，可以使连接持续时间内的所有产生的报文段都消失，使得下一次新的连接中不会出现旧的报文。</li>
+</ul>
+</li>
+</ul>
+
   </section>
   <footer class="post-footer">
     <!--

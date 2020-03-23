@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-19T08:08:47.951Z</updated>
+  <updated>2020-03-23T04:54:19.637Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,158 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>概率相关</title>
+    <link href="http://yoursite.com/2020/03/23/%E6%A6%82%E7%8E%87%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2020/03/23/%E6%A6%82%E7%8E%87%E7%9B%B8%E5%85%B3/</id>
+    <published>2020-03-23T04:47:33.000Z</published>
+    <updated>2020-03-23T04:54:19.637Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>头文件&lt;cstdlib&gt;</li><li>函数rand()和srand(unsined int seed)</li><li>用时间做种子需要头文件&lt;ctime&gt;</li><li>rand()默认种子为1，RAND_MAX的值为32767</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">srand(<span class="keyword">int</span>(time(<span class="literal">NULL</span>)));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; rand() /<span class="keyword">double</span>(RAND_MAX)&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure><h2 id="常用公式"><a href="#常用公式" class="headerlink" title="常用公式"></a>常用公式</h2><p><a href="https://blog.csdn.net/baidu_41560343/article/details/88830374" target="_blank" rel="noopener">https://blog.csdn.net/baidu_41560343/article/details/88830374</a></p><ul><li>产生一定范围随机数的通用表示公式是：</li><li>取得[0,x)的随机<strong>整数</strong>：rand()%x；</li><li>取得[a,b)的随机<strong>整数</strong>：rand()%(b-a)+a；</li><li>取得[a,b]的随机<strong>整数</strong>：rand()%(b-a+1)+a；</li><li>取得(a,b]的随机<strong>整数</strong>：rand()%(b-a)+a+1；</li><li>取得0-1之间的<strong>浮点数</strong>：rand()/double(RAND_MAX)</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;头文件&amp;lt;cstdlib&amp;gt;&lt;/li&gt;
+&lt;li&gt;函数rand()和srand(unsined int seed)&lt;/li&gt;
+&lt;li&gt;用时间做种子需要头文件&amp;lt;ctime&amp;gt;&lt;/li&gt;
+&lt;li&gt;rand()默认种子为1，RAND_MAX的值为327
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c++ resize和reserve</title>
+    <link href="http://yoursite.com/2020/03/22/c++%20resize%E5%92%8Creserve/"/>
+    <id>http://yoursite.com/2020/03/22/c++%20resize%E5%92%8Creserve/</id>
+    <published>2020-03-22T14:27:04.000Z</published>
+    <updated>2020-03-23T06:26:02.030Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="resize"><a href="#resize" class="headerlink" title="resize"></a>resize</h2><p>resize直接改变当前容器内含有元素的数量，但是不会改变原有位置的数字</p><p>resize(len)，如果len大于原先的size，会从size之后开始填充。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(<span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">a.resize(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a[i];   <span class="comment">//输出22200</span></span><br></pre></td></tr></table></figure><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(<span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">a.resize(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span>; i++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a[i];   <span class="comment">//输出2 不会改变原有的数字，但是size会被改变，无法访问a[1]和a[2]</span></span><br></pre></td></tr></table></figure><h2 id="reserve"><a href="#reserve" class="headerlink" title="reserve"></a>reserve</h2><p>改变容器的最大容量，如果改变后的容量比改变前的要大，首先是会先分配一块新的内存，然后将原先的数据通过copy construct复制过去，再将之前的内存销毁。 </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;resize&quot;&gt;&lt;a href=&quot;#resize&quot; class=&quot;headerlink&quot; title=&quot;resize&quot;&gt;&lt;/a&gt;resize&lt;/h2&gt;&lt;p&gt;resize直接改变当前容器内含有元素的数量，但是不会改变原有位置的数字&lt;/p&gt;
+&lt;p&gt;resize(len
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>单调栈</title>
+    <link href="http://yoursite.com/2020/03/22/%E5%8D%95%E8%B0%83%E6%A0%88-1/"/>
+    <id>http://yoursite.com/2020/03/22/%E5%8D%95%E8%B0%83%E6%A0%88-1/</id>
+    <published>2020-03-22T11:48:53.000Z</published>
+    <updated>2020-03-22T11:48:53.633Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>最长回文子串</title>
+    <link href="http://yoursite.com/2020/03/22/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/"/>
+    <id>http://yoursite.com/2020/03/22/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</id>
+    <published>2020-03-22T06:54:43.000Z</published>
+    <updated>2020-03-23T04:48:10.400Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h2><p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-palindromic-substring/</a></p><p>遍历字符串，对字符串上的每个字符从中心向左右展开。</p><p>注意到展开有两种方式，奇数和偶数。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">string</span> res = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;s.length();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = expand(s,i,i);   <span class="comment">//奇数</span></span><br><span class="line">        <span class="keyword">int</span> len2 = expand(s,i,i+<span class="number">1</span>); <span class="comment">//偶数</span></span><br><span class="line">        <span class="keyword">int</span> len = len1&gt;len2?len1:len2;<span class="comment">//取展开长度最长的回文子串</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(len&gt;=ans)</span><br><span class="line">        &#123;</span><br><span class="line">            ans = len;</span><br><span class="line">            <span class="comment">//注意start和end的计算</span></span><br><span class="line">            <span class="keyword">int</span> start = i - (len<span class="number">-1</span>)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> end = len/<span class="number">2</span> + i;    </span><br><span class="line">            res = s.substr(start,end-start+<span class="number">1</span>);<span class="comment">//注意substr的用法，substr(pos,count) 截取[pos,pos+count)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//向左向右展开</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">expand</span><span class="params">(<span class="built_in">string</span>&amp; s,<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(L&gt;=<span class="number">0</span>&amp;&amp;R&lt;s.length()&amp;&amp;s[L]==s[R])   L--,R++;</span><br><span class="line">    <span class="keyword">return</span> R-L<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;最长回文子串&quot;&gt;&lt;a href=&quot;#最长回文子串&quot; class=&quot;headerlink&quot; title=&quot;最长回文子串&quot;&gt;&lt;/a&gt;最长回文子串&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/longest-pali
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c++迭代器的删除操作</title>
+    <link href="http://yoursite.com/2020/03/21/c++%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2020/03/21/c++%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C/</id>
+    <published>2020-03-21T15:19:48.000Z</published>
+    <updated>2020-03-23T06:26:02.171Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="erase-iterator"><a href="#erase-iterator" class="headerlink" title="erase(iterator)"></a>erase(iterator)</h3><p>注意erase会使传入的迭代器失效，但是erase一般会返回一个有效的迭代器</p><ul><li>对于序列容器vector,deque来说，使用erase(iterator)后，后边的每个元素的迭代器都会失效，但是<strong>后边每个元素都会往前移动一个位置</strong>，<strong>但是erase会返回下一个有效的迭代器</strong>；</li></ul><p>错误代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span> &#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it1 = nums.begin();</span><br><span class="line">nums.erase(it1); </span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *it1;   <span class="comment">//空指针异常</span></span><br></pre></td></tr></table></figure><p>将代码修改为nums.erase(it1)会返回下一个迭代器</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span> &#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it1 = nums.begin();</span><br><span class="line">it1 = nums.erase(it1); </span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *it1;   <span class="comment">//输出2</span></span><br></pre></td></tr></table></figure><ul><li>对于关联容器map、set来说，使用了erase(iterator)后，当前元素的迭代器失效，但是其结构是红黑树，删除当前元素的，<strong>不会影响到下一个元素的迭代器</strong>，所以在调用erase之前，记录下一个元素的迭代器即可。</li><li>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的iterator，因此上面两种正确的方法都可以使用。<h2 id="string的删除操作"><a href="#string的删除操作" class="headerlink" title="string的删除操作"></a>string的删除操作</h2></li></ul><p><a href="https://blog.csdn.net/u010472607/article/details/80431604" target="_blank" rel="noopener">https://blog.csdn.net/u010472607/article/details/80431604</a></p><p>非迭代器操作</p><ol><li>basic_string &amp; erase(size_type pos=0, size_type n=npos);<br>即从给定起始位置pos处开始删除, 要删除字符的长度为n, 返回值修改后的string对象引用</li></ol><p>迭代器操作</p><ol start="2"><li><p>iterator erase(const_iterator position)<br>删除迭代器位置处的单个字符, 并返回下个元素的迭代器</p></li><li><p>iterator erase(const_iterator first, const_iterator last)<br>删除迭代器[first, last)区间的所有字符,返回一个指向被删除的最后一个元素的下一个字符的迭代器.</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;erase-iterator&quot;&gt;&lt;a href=&quot;#erase-iterator&quot; class=&quot;headerlink&quot; title=&quot;erase(iterator)&quot;&gt;&lt;/a&gt;erase(iterator)&lt;/h3&gt;&lt;p&gt;注意erase会使传入的迭代器失效，但是
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c++ string</title>
+    <link href="http://yoursite.com/2020/03/21/c++%20string/"/>
+    <id>http://yoursite.com/2020/03/21/c++%20string/</id>
+    <published>2020-03-21T15:10:51.000Z</published>
+    <updated>2020-03-21T15:11:51.512Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/qq_37941471/article/details/82107077" target="_blank" rel="noopener">https://blog.csdn.net/qq_37941471/article/details/82107077</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_37941471/article/details/82107077&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_37941471/art
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>单调栈</title>
+    <link href="http://yoursite.com/2020/03/21/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
+    <id>http://yoursite.com/2020/03/21/%E5%8D%95%E8%B0%83%E6%A0%88/</id>
+    <published>2020-03-21T15:07:22.000Z</published>
+    <updated>2020-03-21T15:07:22.112Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>http与https</title>
     <link href="http://yoursite.com/2020/03/19/http%E4%B8%8Ehttps/"/>
     <id>http://yoursite.com/2020/03/19/http%E4%B8%8Ehttps/</id>
     <published>2020-03-19T08:00:41.000Z</published>
-    <updated>2020-03-19T08:08:47.951Z</updated>
+    <updated>2020-03-23T06:26:02.171Z</updated>
     
-    <content type="html"><![CDATA[<p>HTTP协议和HTTPS协议区别如下：</p><ol><li><p>HTTP协议是以明文的方式在网络中传输数据，而HTTPS协议传输的数据则是经过TLS加密后的，HTTPS具有更高的安全性</p></li><li><p>HTTPS在TCP三次握手阶段之后，还需要进行SSL 的handshake，协商加密使用的对称加密密钥</p></li><li><p>HTTPS协议需要服务端申请证书，浏览器端安装对应的根证书</p></li><li><p>HTTP协议端口是80，HTTPS协议端口是443</p></li></ol><h2 id="HTTPS优点："><a href="#HTTPS优点：" class="headerlink" title="HTTPS优点："></a>HTTPS优点：</h2><ul><li><p>HTTPS传输数据过程中使用密钥进行加密，所以安全性更高</p></li><li><p>HTTPS协议可以认证用户和服务器，确保数据发送到正确的用户和服务器</p></li></ul><h2 id="HTTPS缺点："><a href="#HTTPS缺点：" class="headerlink" title="HTTPS缺点："></a>HTTPS缺点：</h2><ul><li><p>HTTPS握手阶段延时较高：由于在进行HTTP会话之前还需要进行SSL握手，因此HTTPS协议握手阶段延时增加</p></li><li><p>HTTPS部署成本高：一方面HTTPS协议需要使用证书来验证自身的安全性，所以需要购买CA证书；另一方面由于采用HTTPS协议需要进行加解密的计算，占用CPU资源较多，需要的服务器配置或数目高</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>HTTP协议和HTTPS协议区别如下：</p><ol><li><p>HTTP协议是以明文的方式在网络中传输数据，而HTTPS协议传输的数据则是经过TLS加密后的，HTTPS具有更高的安全性</p></li><li><p>HTTPS在TCP三次握手阶段之后，还需要进行SSL 的handshake，协商加密使用的对称加密密钥</p></li><li><p>HTTPS协议需要服务端申请证书，浏览器端安装对应的根证书</p></li><li><p>HTTP协议端口是80，HTTPS协议端口是443</p></li></ol><h2 id="HTTPS优点："><a href="#HTTPS优点：" class="headerlink" title="HTTPS优点："></a>HTTPS优点：</h2><ul><li><p>HTTPS传输数据过程中使用密钥进行加密，所以安全性更高</p></li><li><p>HTTPS协议可以认证用户和服务器，确保数据发送到正确的用户和服务器</p></li></ul><h2 id="HTTPS缺点："><a href="#HTTPS缺点：" class="headerlink" title="HTTPS缺点："></a>HTTPS缺点：</h2><ul><li><p>HTTPS握手阶段延时较高：由于在进行HTTP会话之前还需要进行SSL握手，因此HTTPS协议握手阶段延时增加</p></li><li><p>HTTPS部署成本高：一方面HTTPS协议需要使用证书来验证自身的安全性，所以需要购买CA证书；另一方面由于采用HTTPS协议需要进行加解密的计算，占用CPU资源较多，需要的服务器配置或数目高</p></li></ul><h2 id="HTTP返回码"><a href="#HTTP返回码" class="headerlink" title="HTTP返回码"></a>HTTP返回码</h2><ul><li><p>1xx：指示信息–表示请求已接收，继续处理。</p></li><li><p>2xx：成功–表示请求已被成功接收、理解、接受。</p></li><li><p>3xx：重定向–要完成请求必须进行更进一步的操作。</p></li><li><p>4xx：客户端错误–请求有语法错误或请求无法实现。</p></li><li><p>5xx：服务器端错误–服务器未能实现合法的请求。</p></li><li><p>常见状态代码、状态描述的详细说明如下。</p></li><li><p>200 OK：客户端请求成功。</p></li><li><p>206 partial content服务器已经正确处理部分GET请求，实现断点续传或同时分片下载，该请求必须包含Range请求头来指示客户端期望得到的范围</p></li><li><p>300 multiple choices（可选重定向）:被请求的资源有一系列可供选择的反馈信息，由浏览器/用户自行选择其中一个。</p></li><li><p>301  moved permanently（永久重定向）：该资源已被永久移动到新位置，将来任何对该资源的访问都要使用本响应返回的若干个URI之一。</p></li><li><p>302 move temporarily(临时重定向)：请求的资源现在临时从不同的URI中获得，</p></li><li><p>304：not modified :如果客户端发送一个待条件的GET请求并且该请求以经被允许，而文档内容未被改变，则返回304,该响应不包含包体（即可直接使用缓存）。</p></li><li><p>403 Forbidden：服务器收到请求，但是拒绝提供服务。</p></li><li><p>404 Not Found：请求资源不存在，举个例子：输入了错误的URL。</p></li></ul>]]></content>
     
     <summary type="html">
     
@@ -114,9 +259,16 @@
     <link href="http://yoursite.com/2020/03/19/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"/>
     <id>http://yoursite.com/2020/03/19/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/</id>
     <published>2020-03-19T04:33:17.000Z</published>
-    <updated>2020-03-19T04:33:17.545Z</updated>
+    <updated>2020-03-23T06:26:02.030Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://img-blog.csdn.net/20170305155824486?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTEZfMjAxNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p><ul><li>客户端A发送一个FIN，用来关闭客户A到服务器B的数据传送。</li><li>服务器B收到这个FIN，它发回一个ACK，确认序号为收到的序号加1。和SYN一样，一个FIN将占用一个序号。</li></ul><p>因为客户端A已经确定要关闭连接，所以此时客户端A不往服务器B发送数据，但是服务器B可能还是会发送数据给客户端A，所以要让服务器B关闭客户端A的连接</p><p>所以客户端A请求关闭连接只是单方面的关闭，不代表说服务器B就想要关闭连接了</p><ul><li>服务器B关闭与客户端A的连接，发送一个FIN给客户端A。</li><li>客户端A发回ACK报文确认，并将确认序号设置为收到序号加1。</li></ul><p>客户端A收到服务器B发送的FIN信号后，需要等待2MSL，</p><ul><li>原因：<ul><li>保证客户端ACK报文能够到达服务器B，如果ACK报文没有到达服务器B，服务器B会认为客户端A没有收到服务器B第三步的FIN信号，于是服务器B会超时重传这个FIN信号。如果不等待2MSL，直接关闭，那么ACK报文可能就丢失了。</li><li>MSL是Maximum Segment Lifetime，报文最大生存时间，等待2MSL，可以使连接持续时间内的所有产生的报文段都消失，使得下一次新的连接中不会出现旧的报文。</li></ul></li></ul>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://img-blog.csdn.net/20170305155824486?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTEZfMjAxNg==/font/5a6L5L2T/fontsize/40
+      
     
     </summary>
     
@@ -129,9 +281,9 @@
     <link href="http://yoursite.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/"/>
     <id>http://yoursite.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/</id>
     <published>2020-03-18T17:45:20.000Z</published>
-    <updated>2020-03-19T08:08:24.728Z</updated>
+    <updated>2020-03-21T15:05:41.513Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="PAR协议"><a href="#PAR协议" class="headerlink" title="PAR协议"></a>PAR协议</h2><p>首先要知道TCP可靠传输是依赖于PAR协议的，即支持重传的肯定确认协议（Positive Acknowledgement with Re-transmission）。</p><p>传输层的协议数据单元叫做段(Segment)，现在一个设备使用PAR重发单元数据，直到受到一个确认(acknowledgement)。如果在接收端收到了损坏的数据单元，接收端就会抛弃这个段。所以发送方将会重发那些没有收到确认的数据单元。</p><ul><li>Step 1 (SYN) : 第一步，客户端想要跟服务器建立连接，首先会发送一个含有SYN信号的报文，告知服务器，客户端想要跟他进行连接，并且告诉服务器，客户端将从哪个序号开始发送数据</li><li>Step 2 (SYN + ACK): 服务器使用设置的SYN-ACK信号位响应客户端请求。ACK表示服务器接收到了上一步中客户端发送的报文，而SYN表示服务器将从哪里开始发送数据</li><li>Step 3 (ACK) : 最后一步，客户端收到了服务器的相应并且建立了一个可靠连接，并以此传输数据。</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="PAR协议"><a href="#PAR协议" class="headerlink" title="PAR协议"></a>PAR协议</h2><p>首先要知道TCP可靠传输是依赖于PAR协议的，即支持重传的肯定确认协议（Positive Acknowledgement with Re-transmission）。</p><p>传输层的协议数据单元叫做段(Segment)，现在一个设备使用PAR重发单元数据，直到受到一个确认(acknowledgement)。如果在接收端收到了损坏的数据单元，接收端就会抛弃这个段。所以发送方将会重发那些没有收到确认的数据单元。</p><ul><li>Step 1 (SYN) : 第一步，客户端想要跟服务器建立连接，首先会发送一个含有SYN信号的报文，告知服务器，客户端想要跟他进行连接，并且告诉服务器，客户端将从哪个序号开始发送数据</li><li>Step 2 (SYN + ACK): 服务器使用设置的SYN-ACK信号位响应客户端请求。ACK表示服务器接收到了上一步中客户端发送的报文，而SYN表示服务器将从哪里开始发送数据</li><li>Step 3 (ACK) : 最后一步，客户端收到了服务器的相应并且建立了一个可靠连接，并以此传输数据。</li></ul><h2 id="为什么不是二次握手？"><a href="#为什么不是二次握手？" class="headerlink" title="为什么不是二次握手？"></a>为什么不是二次握手？</h2><ul><li>如果是二次握手，客户端发送SYN给服务器，假设这个SYN堵塞了，长期滞留在某个节点。</li><li>再假设客户端与服务器又成功建立了连接，在连接释放后</li><li>如果滞留的那个SYN到达了服务器，服务器就会以为客户端要建立连接，于是创建Socket套接字，等待客户端发送数据。</li><li>于是返回SYN+ACK信号给客户端，可是客户端并没有要建立连接，于是会把这个SYN+ACK信号抛弃，而服务器就一直在等待客户端发送数据。</li><li>这就是二次握手的弊端，会出现滞留的SYN报文发送给服务器，造成服务器资源浪费。</li></ul>]]></content>
     
     <summary type="html">
     
@@ -303,180 +455,6 @@
     
     
       <category term="c++" scheme="http://yoursite.com/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode-移动零与移除元素</title>
-    <link href="http://yoursite.com/2020/01/14/Leetcode-%E7%A7%BB%E5%8A%A8%E9%9B%B6%E4%B8%8E%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/"/>
-    <id>http://yoursite.com/2020/01/14/Leetcode-%E7%A7%BB%E5%8A%A8%E9%9B%B6%E4%B8%8E%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/</id>
-    <published>2020-01-14T13:06:34.000Z</published>
-    <updated>2020-01-22T16:37:02.747Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="移动零"><a href="#移动零" class="headerlink" title="移动零"></a>移动零</h2><p><a href="https://leetcode-cn.com/problems/move-zeroes/" target="_blank" rel="noopener">题目</a></p><p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p><pre><code>示例:输入: [0,1,0,3,12]输出: [1,3,12,0,0]</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lastNum = <span class="number">0</span>;    <span class="comment">//慢指针确定搬运的位置</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;nums.size();i++)    <span class="comment">//快指针搜索符合条件的数值的位置</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i]!=<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            nums[lastNum] = nums[i];</span><br><span class="line">            lastNum++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lastNum;i&lt;nums.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        nums[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h2><p><a href="https://leetcode-cn.com/problems/remove-element/" target="_blank" rel="noopener">题目</a></p><p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。</p><p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p><p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p><pre><code>nums = [3,2,2,3], val = 3,函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> loc = <span class="number">0</span>;    <span class="comment">//慢指针确定要搬运的位置</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;nums.size();i++)    <span class="comment">//i为快指针用于搜索符合条件的数值的位置</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i]!=val)</span><br><span class="line">        &#123;</span><br><span class="line">            nums[loc] = nums[i];</span><br><span class="line">            loc++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> loc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这两道题比较像，所以放在一起记了，共同点是都利用了双指针，一个快指针一个慢指针，快指针用于搜索符合条件的数值的位置，慢指针用于确定数字要搬运的位置。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;移动零&quot;&gt;&lt;a href=&quot;#移动零&quot; class=&quot;headerlink&quot; title=&quot;移动零&quot;&gt;&lt;/a&gt;移动零&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/move-zeroes/&quot; target=&quot;_b
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Leetcode简单题" scheme="http://yoursite.com/tags/Leetcode%E7%AE%80%E5%8D%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++ static关键字</title>
-    <link href="http://yoursite.com/2020/01/11/c++%20static%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-    <id>http://yoursite.com/2020/01/11/c++%20static%E5%85%B3%E9%94%AE%E5%AD%97/</id>
-    <published>2020-01-11T08:57:15.000Z</published>
-    <updated>2020-01-11T09:34:34.230Z</updated>
-    
-    <content type="html"><![CDATA[<p>摘抄至<a href="https://www.geeksforgeeks.org/static-keyword-cpp/" target="_blank" rel="noopener">geeksforgeeks</a></p><h2 id="函数中的静态变量"><a href="#函数中的静态变量" class="headerlink" title="函数中的静态变量"></a>函数中的静态变量</h2><p>当一个变量被声明为静态的时，它的空间就会被分配持续整个程序的生命周期</p><p>即使该函数被调用多次，静态变量的空间也只会被分配一次，并且该静态变量的值会一直持续到下一次函数调用</p><p>在实现协程或其他需要保存函数之前的状态的应用时会很有用</p><h2 id="类中的静态变量"><a href="#类中的静态变量" class="headerlink" title="类中的静态变量"></a>类中的静态变量</h2><p>当这些静态变量被分配了静态的存储空间后，他们只会被初始化一次</p><p>同一个类中的静态变量会被该类的所有实例共享</p><p>所以不会有不同实例对象有着不同的静态变量的值</p><p>并且由于这个原因，该静态变量不能够被构造器初始化(因为构造器构造的是实例对象，实例对象是共享的这些静态变量)</p><p>所以，类中的静态变量应该被用户，使用类名与范围解析运算符，显式地初始化</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GfG</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i; </span><br><span class="line">      </span><br><span class="line">    GfG() </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="comment">// Do nothing </span></span><br><span class="line">    &#125;; </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="comment">//在这里初始化</span></span><br><span class="line"><span class="keyword">int</span> GfG::i = <span class="number">1</span>; </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    GfG obj; </span><br><span class="line">    <span class="comment">// prints value of i </span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; obj.i;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="类的静态实例"><a href="#类的静态实例" class="headerlink" title="类的静态实例"></a>类的静态实例</h2><p>与静态变量一样，初始化后会在整个程序的生命周期存在</p><h2 id="类中的静态函数"><a href="#类中的静态函数" class="headerlink" title="类中的静态函数"></a>类中的静态函数</h2><p>静态成员函数只允许访问静态变量或其他的静态函数</p><p>可以被类直接引用，无需实例对象引用</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;摘抄至&lt;a href=&quot;https://www.geeksforgeeks.org/static-keyword-cpp/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;geeksforgeeks&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;函数中的静态变量&quot;&gt;&lt;a 
-      
-    
-    </summary>
-    
-    
-    
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++ 迭代器</title>
-    <link href="http://yoursite.com/2020/01/11/c++%20%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
-    <id>http://yoursite.com/2020/01/11/c++%20%E8%BF%AD%E4%BB%A3%E5%99%A8/</id>
-    <published>2020-01-11T06:46:02.000Z</published>
-    <updated>2020-01-11T08:36:55.648Z</updated>
-    
-    <content type="html"><![CDATA[<p>摘抄于<a href="https://www.geeksforgeeks.org/iterators-c-stl/" target="_blank" rel="noopener">geeksforgeeks</a></p><p>迭代器用于指向<strong>STL容器</strong>的<strong>内存地址</strong>(类似于指针)</p><p>减少程序的复杂度和执行时间</p><h2 id="迭代器操作"><a href="#迭代器操作" class="headerlink" title="迭代器操作"></a>迭代器操作</h2><h3 id="begin"><a href="#begin" class="headerlink" title="begin()"></a>begin()</h3><p>用于返回容器的开始位置</p><h3 id="end"><a href="#end" class="headerlink" title="end()"></a>end()</h3><p>用于返回容器的结束位置的后一个位置</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化容器</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ar = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">//声明容器的迭代器</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator ptr;</span><br><span class="line"><span class="comment">//遍历输出</span></span><br><span class="line"><span class="keyword">for</span>(ptr = ar.begin(); ptr &lt; ar.end(); ptr++)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt; *ptr &lt;&lt; <span class="string">" "</span>;     <span class="comment">//由于迭代器和指针类似，指向内存地址，需要解引用</span></span><br></pre></td></tr></table></figure><h3 id="advance"><a href="#advance" class="headerlink" title="advance()"></a>advance()</h3><p>用于增加迭代器位置</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ar = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator ptr = ar.begin();</span><br><span class="line"></span><br><span class="line">advance(ptr,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;*ptr; <span class="comment">//结果为4</span></span><br></pre></td></tr></table></figure><h3 id="next"><a href="#next" class="headerlink" title="next()"></a>next()</h3><p>用于返回一个<strong>新的迭代器</strong>，将指向参数中提到的位置</p><h3 id="prev"><a href="#prev" class="headerlink" title="prev()"></a>prev()</h3><p>用于返回一个<strong>新的迭代器</strong>，将指向参数中指向的位置</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ar = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator ptr = ar.begin(); <span class="comment">//指向1</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator ftr = ar.end();   <span class="comment">//指向5后面的内存地址</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> it1 = next(ptr,<span class="number">3</span>); <span class="comment">//指向4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> it2 = prev(ftr,<span class="number">3</span>); <span class="comment">//将指向3</span></span><br></pre></td></tr></table></figure><h3 id="inserter"><a href="#inserter" class="headerlink" title="inserter()"></a>inserter()</h3><p>构建一个插入迭代器，指向要插入的结点</p><p>接受两个参数</p><ol><li>容器</li><li>元素要插入的位置的迭代器</li></ol><p>与copy函数搭配使用</p><h3 id="copy"><a href="#copy" class="headerlink" title="copy()"></a>copy()</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy(strt_iter1, end_iter1, strt_iter2);</span><br></pre></td></tr></table></figure><ul><li>strt_iter1：指向源容器的开始位置，开始复制的元素的位置</li><li>end_iter1：容器的结束位置，结束复制的元素位置的后一位</li><li>strt_iter2：目标容器的位置，元素复制的<strong>目标</strong>位置的前面</li><li>结果：将strt_iter1 到 end_iter1这一段元素 复制到strt_iter2位置的前面</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ar = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;; </span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ar1 = &#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;;  </span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator ptr = ar.begin(); </span><br><span class="line"></span><br><span class="line"><span class="comment">//ptr指向ar中的4     </span></span><br><span class="line">advance(ptr, <span class="number">3</span>); </span><br><span class="line">      </span><br><span class="line"><span class="comment">// inserter返回ptr指向的ar中的位置 </span></span><br><span class="line"><span class="comment">// 将ar1复制到inserter指向的位置的前面</span></span><br><span class="line">copy(ar1.begin(), ar1.end(), inserter(ar,ptr)); </span><br><span class="line">      </span><br><span class="line"><span class="comment">// Displaying new vector elements </span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"The new vector after inserting elements is : "</span>; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> &amp;x : ar)  </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span>; <span class="comment">//输出 1 2 3 10 20 30 4 5</span></span><br><span class="line">      </span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;摘抄于&lt;a href=&quot;https://www.geeksforgeeks.org/iterators-c-stl/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;geeksforgeeks&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;迭代器用于指向&lt;strong&gt;STL容器&lt;
-      
-    
-    </summary>
-    
-    
-    
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++ I/O</title>
-    <link href="http://yoursite.com/2020/01/11/c++%20I-O/"/>
-    <id>http://yoursite.com/2020/01/11/c++%20I-O/</id>
-    <published>2020-01-11T06:05:37.000Z</published>
-    <updated>2020-01-11T07:28:00.727Z</updated>
-    
-    <content type="html"><![CDATA[<p>摘抄于 <a href="https://www.geeksforgeeks.org/basic-input-output-c/" target="_blank" rel="noopener">geeksforgeeks</a></p><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><h3 id="iostream"><a href="#iostream" class="headerlink" title="iostream"></a>iostream</h3><ul><li>用于标准的输入输出流</li><li>包含了cin,cout,cerr函数</li></ul><h3 id="iomanip"><a href="#iomanip" class="headerlink" title="iomanip"></a>iomanip</h3><ul><li>I/O manipulators</li><li>用于操作流的输出</li><li>包含了setw, setprecision函数</li></ul><h3 id="fstream"><a href="#fstream" class="headerlink" title="fstream"></a>fstream</h3><ul><li>用于文件流 file stream</li><li>用于处理从文件中作为input，读入数据</li><li>也可用于写入文件作为ouput</li></ul><h4 id="cerr"><a href="#cerr" class="headerlink" title="cerr"></a>cerr</h4><ul><li>不经过缓存的标准错误流</li><li>用于输出错误，同时也是一个ostream类的实例</li><li>当需要立即展示错误信息时可以使用这个函数</li></ul><h4 id="clog"><a href="#clog" class="headerlink" title="clog"></a>clog</h4><ul><li>经过缓存的错误流</li><li>也是一个iostream类的实例，用于输出错误</li><li>但与cerr不同的是，错误会首先插入到缓存中，并且存储在缓存中直到缓存被充满为止后放出。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;摘抄于 &lt;a href=&quot;https://www.geeksforgeeks.org/basic-input-output-c/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;geeksforgeeks&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;头文件&quot;&gt;&lt;a hr
-      
-    
-    </summary>
-    
-    
-    
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基础算法-二叉树遍历</title>
-    <link href="http://yoursite.com/2020/01/07/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/"/>
-    <id>http://yoursite.com/2020/01/07/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/</id>
-    <published>2020-01-07T12:02:01.000Z</published>
-    <updated>2020-01-23T08:58:16.311Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="二叉树的前序遍历"><a href="#二叉树的前序遍历" class="headerlink" title="二叉树的前序遍历"></a>二叉树的前序遍历</h2><h3 id="递归方法"><a href="#递归方法" class="headerlink" title="递归方法"></a>递归方法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorderRecursive</span><span class="params">(TreeNode* root)</span> </span>&#123;<span class="comment">//先访问根，然后访问子树</span></span><br><span class="line"><span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; root-&gt;val&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (root-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">preorderRecursive(root-&gt;left);</span><br><span class="line"><span class="keyword">if</span> (root-&gt;right != <span class="literal">NULL</span>)</span><br><span class="line">preorderRecursive(root-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="栈的迭代方法"><a href="#栈的迭代方法" class="headerlink" title="栈的迭代方法"></a>栈的迭代方法</h3><ol><li>初始化：引入一个栈，先将根结点放进栈内</li><li>开始循环，直到栈为空：<ol><li>每次弹出栈顶元素，对栈顶元素进行操作</li><li>如果该元素有<strong>右</strong>子结点，将右子结点放入栈内</li><li>如果该元素有<strong>左</strong>子结点，将左子结点放入栈内</li></ol></li></ol><p>其实这个方法跟递归中产生的栈是同样效果</p><p>递归中先调用左子结点，再调用右子结点，这样先给左子结点产生帧栈，等左子结点的调用全部结束，再调用右子结点。</p><p>迭代中是将右子结点先放入栈中，左子结点后放入栈中，先处理左子结点的帧栈，在处理右子结点。</p><p>总之就是自己引入了一个栈，用于模拟函数调用时的栈。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorder</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span>(root == <span class="literal">NULL</span>)<span class="keyword">return</span> ;</span><br><span class="line"></span><br><span class="line"><span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">s.push(root);</span><br><span class="line"><span class="keyword">while</span> (!s.empty())</span><br><span class="line">&#123;</span><br><span class="line">TreeNode* node = s.top();</span><br><span class="line">s.pop();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; node-&gt;val;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (node-&gt;right != <span class="literal">NULL</span>)</span><br><span class="line">s.push(node-&gt;right);</span><br><span class="line"><span class="keyword">if</span> (node-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">s.push(node-&gt;left);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h2><h3 id="递归方法-1"><a href="#递归方法-1" class="headerlink" title="递归方法"></a>递归方法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorderRecursive</span><span class="params">(TreeNode* root)</span></span>&#123;<span class="comment">//先访问左(右)子树，然后访问根，再访问另一个子树</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (root-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">inorderRecursive(root-&gt;left);</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; root-&gt;val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (root-&gt;right != <span class="literal">NULL</span>)</span><br><span class="line">inorderRecursive(root-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="栈的迭代方法-1"><a href="#栈的迭代方法-1" class="headerlink" title="栈的迭代方法"></a>栈的迭代方法</h3><p>同样的，这里的栈也是对函数调用时产生的栈的模拟</p><ol><li>压入当前结点，并<strong>优先向左结点</strong>移动，即递归中的对左结点函数调用</li><li>当前结点为空时，即可对当前结点进行操作，即递归中的输出</li><li><strong>操作后，应该向右结点移动</strong>，即递归中对右结点的函数调用</li><li>当 <strong>当前结点为空</strong>且<strong>栈为空时</strong>才会退出，与递归的结束时的程序状态是一致的。</li></ol><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">TreeNode* cur = root;</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (cur != <span class="literal">NULL</span>)<span class="comment">//左右结点的入栈操作</span></span><br><span class="line">&#123;</span><br><span class="line">s.push(cur);</span><br><span class="line">cur = cur-&gt;left;<span class="comment">//优先让左结点入栈</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>    <span class="comment">//当cur为空时，需要对栈顶元素进行操作，并转移到右结点</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (s.empty() == <span class="literal">true</span>) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//对中间的结点进行操作</span></span><br><span class="line">cur = s.top();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; cur-&gt;val;</span><br><span class="line"></span><br><span class="line">s.pop();<span class="comment">//操作后出栈</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//操作完后转移到右结点</span></span><br><span class="line">cur = cur-&gt;right;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="二叉树的后序遍历"><a href="#二叉树的后序遍历" class="headerlink" title="二叉树的后序遍历"></a>二叉树的后序遍历</h2><h3 id="递归方法-2"><a href="#递归方法-2" class="headerlink" title="递归方法"></a>递归方法</h3><h3 id="栈的迭代方法-2"><a href="#栈的迭代方法-2" class="headerlink" title="栈的迭代方法"></a>栈的迭代方法</h3><p>为了跟中序遍历的写法一致一些，写的比较麻烦</p><p>思想同样是模拟函数调用时产生的栈</p><p>后序遍历时，一定会优先访问左结点，到达非叶子结点的某个中间结点时，我们<strong>只需检测该中间结点的右结点是否被访问过</strong>，以此来判断是否要将该中间结点输出并出栈。</p><ol><li>将<strong>左结点或右结点</strong>进行入栈，并为了记录访问过的结点，增加了一个集合，集合必须初始化放入NULL</li><li>当左右结点都为空时，获取栈顶元素<ol><li>while循环检测栈顶元素的<strong>右结点</strong>是否被访问过<ol><li>若<strong>被访问过</strong>，则将该栈顶元素操作并弹出，并更新栈顶元素，继续循环<ol><li>若弹出后，栈为空则返回结果</li></ol></li><li>若<strong>没有被访问过</strong>，则向栈顶元素的右结点移动</li></ol></li></ol></li></ol><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postorder</span><span class="params">(TreeNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">stack</span>&lt;TreeNode* &gt; s;</span><br><span class="line"><span class="built_in">set</span>&lt;TreeNode*&gt; treeSet;</span><br><span class="line">treeSet.insert(<span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">TreeNode* cur = root;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (cur != <span class="literal">NULL</span>)<span class="comment">//模拟左右结点的入栈，并记录访问过的结点</span></span><br><span class="line">&#123;</span><br><span class="line">s.push(cur);</span><br><span class="line">treeSet.insert(cur);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cur-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">cur = cur-&gt;left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//这里不能写else if</span></span><br><span class="line"><span class="comment">//如果右结点也为空的话，在下一次循环中会直接走到大判断中的else，以此获取中间结点。</span></span><br><span class="line">cur = cur-&gt;right;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;<span class="comment">//得到中间结点，进行操作</span></span><br><span class="line">cur = s.top();<span class="comment">//当前结点更新到栈顶元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//只需判断当前结点的右结点是否被访问过，因为左结点肯定被访问了</span></span><br><span class="line"><span class="comment">//若右结点也被访问过，说明已经到了后序遍历的左右中的中结点了，需要操作输出。</span></span><br><span class="line"><span class="keyword">while</span> (treeSet.find(cur-&gt;right) != treeSet.end())</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; cur-&gt;val;<span class="comment">//左右结点均被访问，输出该结点</span></span><br><span class="line">s.pop();<span class="comment">//将该结点弹出</span></span><br><span class="line"><span class="keyword">if</span> (s.empty() == <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">cur = s.top();<span class="comment">//当前结点更新到栈顶元素</span></span><br><span class="line">&#125;</span><br><span class="line">cur = cur-&gt;right;<span class="comment">//此时栈顶元素为中间结点，需要向右结点移动</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;二叉树的前序遍历&quot;&gt;&lt;a href=&quot;#二叉树的前序遍历&quot; class=&quot;headerlink&quot; title=&quot;二叉树的前序遍历&quot;&gt;&lt;/a&gt;二叉树的前序遍历&lt;/h2&gt;&lt;h3 id=&quot;递归方法&quot;&gt;&lt;a href=&quot;#递归方法&quot; class=&quot;headerlink&quot; 
-      
-    
-    </summary>
-    
-    
-    
-      <category term="基础算法 - 二叉树" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode-环形链表与相交链表</title>
-    <link href="http://yoursite.com/2020/01/06/Leetcode-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E4%B8%8E%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/"/>
-    <id>http://yoursite.com/2020/01/06/Leetcode-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E4%B8%8E%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/</id>
-    <published>2020-01-06T08:53:12.000Z</published>
-    <updated>2020-01-06T09:22:59.730Z</updated>
-    
-    <content type="html"><![CDATA[<p>两道题都用了双指针走的路径长度是否相等来解决，所以记录一下。</p><h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/linked-list-cycle/</a></p><p>给定一个链表，判断链表中是否有环。</p><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png" alt="环形链表示意图"></p><h2 id="方法一-哈希表"><a href="#方法一-哈希表" class="headerlink" title="方法一(哈希表)"></a>方法一(哈希表)</h2><ol><li>遍历链表，将所有节点的地址记录到哈希表中</li><li>若存在环，则哈希表中会有对应的地址</li><li>若不存在环，会遍历到NULL位置</li></ol><h2 id="方法二-快慢指针"><a href="#方法二-快慢指针" class="headerlink" title="方法二(快慢指针)"></a>方法二(快慢指针)</h2><ol><li>利用两个指针，slow和fast</li><li>slow指针每次只走一步，fast指针每次走两步</li><li>若存在环，则fast指针必定能追上slow指针</li><li>若不存在环，fast指针会走到NULL位置</li></ol><h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><p><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/</a></p><p>编写一个程序，找到两个单链表相交的起始节点。</p><p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" alt="相交链表示意图"></p><h2 id="方法一-暴力遍历"><a href="#方法一-暴力遍历" class="headerlink" title="方法一(暴力遍历)"></a>方法一(暴力遍历)</h2><ol><li>类似于双层for循环，只要找到相等的地址即可</li></ol><h2 id="方法二-哈希表"><a href="#方法二-哈希表" class="headerlink" title="方法二(哈希表)"></a>方法二(哈希表)</h2><ol><li>如环形链表一样，遍历两个链表，将地址全部放入哈希表中</li><li>若相交，则哈希表中可以找到相等地址</li></ol><h2 id="方法三-双指针"><a href="#方法三-双指针" class="headerlink" title="方法三(双指针)"></a>方法三(双指针)</h2><p>看图容易理解</p><p>  <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/tu-jie-xiang-jiao-lian-biao-by-user7208t/</a></p><ol><li>将两个链表看成三块</li><li>链表A中分为 AX，C</li><li>链表B中分为 BX，C</li><li>C是两个链表中相交的部分</li><li>让两个指针PA、PB遍历A、B，走到NULL时，重新定向到B、A，继续遍历</li><li>若相交<ol><li>则有指针PA的路径 s1 = AX+C+BX</li><li>PB的路径 s2 = BX+C+AX</li><li>所以s1 = s2，与环形链表类似</li></ol></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;两道题都用了双指针走的路径长度是否相等来解决，所以记录一下。&lt;/p&gt;
-&lt;h1 id=&quot;环形链表&quot;&gt;&lt;a href=&quot;#环形链表&quot; class=&quot;headerlink&quot; title=&quot;环形链表&quot;&gt;&lt;/a&gt;环形链表&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcod
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Leetcode简单题" scheme="http://yoursite.com/tags/Leetcode%E7%AE%80%E5%8D%95%E9%A2%98/"/>
-    
-      <category term="Leetcode链表题" scheme="http://yoursite.com/tags/Leetcode%E9%93%BE%E8%A1%A8%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode-链表</title>
-    <link href="http://yoursite.com/2019/12/24/Leetcode-%E9%93%BE%E8%A1%A8%E9%A2%98/"/>
-    <id>http://yoursite.com/2019/12/24/Leetcode-%E9%93%BE%E8%A1%A8%E9%A2%98/</id>
-    <published>2019-12-24T11:43:14.000Z</published>
-    <updated>2020-01-06T09:17:12.027Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Leetcode链表的定义"><a href="#Leetcode链表的定义" class="headerlink" title="Leetcode链表的定义"></a>Leetcode链表的定义</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line"></span><br><span class="line">    ListNode(<span class="keyword">int</span> x) : val(x), next(<span class="literal">NULL</span>) &#123;&#125; <span class="comment">//构造函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ol><li><p>先获取指向整条链表的头指针</p><p> ListNode *head = new ListNode(-1);</p></li><li><p>定义一个遍历该链表的指针</p><p> ListNode *p = head;</p></li><li><p>用p来构造该链表，假设输入为 3-&gt;4-2</p></li></ol><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">p-&gt;next = <span class="keyword">new</span> ListNode(<span class="number">3</span>);</span><br><span class="line">p = p-&gt;next;</span><br><span class="line"></span><br><span class="line">p-&gt;next = <span class="keyword">new</span> ListNode(<span class="number">4</span>);</span><br><span class="line">p = p-&gt;next;</span><br><span class="line"></span><br><span class="line">p-&gt;next = <span class="keyword">new</span> ListNode(<span class="number">2</span>);</span><br><span class="line">p = p-&gt;next;</span><br></pre></td></tr></table></figure><ol start="4"><li>调用函数修改指针时，用head指针作为实参代入</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Leetcode链表的定义&quot;&gt;&lt;a href=&quot;#Leetcode链表的定义&quot; class=&quot;headerlink&quot; title=&quot;Leetcode链表的定义&quot;&gt;&lt;/a&gt;Leetcode链表的定义&lt;/h1&gt;&lt;figure class=&quot;highlight cpp&quot;
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Leetcode链表题" scheme="http://yoursite.com/tags/Leetcode%E9%93%BE%E8%A1%A8%E9%A2%98/"/>
     
   </entry>
   

@@ -69,6 +69,36 @@
 <li><p>HTTPS部署成本高：一方面HTTPS协议需要使用证书来验证自身的安全性，所以需要购买CA证书；另一方面由于采用HTTPS协议需要进行加解密的计算，占用CPU资源较多，需要的服务器配置或数目高</p>
 </li>
 </ul>
+<h2 id="HTTP返回码"><a href="#HTTP返回码" class="headerlink" title="HTTP返回码"></a>HTTP返回码</h2><ul>
+<li><p>1xx：指示信息–表示请求已接收，继续处理。</p>
+</li>
+<li><p>2xx：成功–表示请求已被成功接收、理解、接受。</p>
+</li>
+<li><p>3xx：重定向–要完成请求必须进行更进一步的操作。</p>
+</li>
+<li><p>4xx：客户端错误–请求有语法错误或请求无法实现。</p>
+</li>
+<li><p>5xx：服务器端错误–服务器未能实现合法的请求。</p>
+</li>
+<li><p>常见状态代码、状态描述的详细说明如下。</p>
+</li>
+<li><p>200 OK：客户端请求成功。</p>
+</li>
+<li><p>206 partial content服务器已经正确处理部分GET请求，实现断点续传或同时分片下载，该请求必须包含Range请求头来指示客户端期望得到的范围</p>
+</li>
+<li><p>300 multiple choices（可选重定向）:被请求的资源有一系列可供选择的反馈信息，由浏览器/用户自行选择其中一个。</p>
+</li>
+<li><p>301  moved permanently（永久重定向）：该资源已被永久移动到新位置，将来任何对该资源的访问都要使用本响应返回的若干个URI之一。</p>
+</li>
+<li><p>302 move temporarily(临时重定向)：请求的资源现在临时从不同的URI中获得，</p>
+</li>
+<li><p>304：not modified :如果客户端发送一个待条件的GET请求并且该请求以经被允许，而文档内容未被改变，则返回304,该响应不包含包体（即可直接使用缓存）。</p>
+</li>
+<li><p>403 Forbidden：服务器收到请求，但是拒绝提供服务。</p>
+</li>
+<li><p>404 Not Found：请求资源不存在，举个例子：输入了错误的URL。</p>
+</li>
+</ul>
 
   </section>
   <footer class="post-footer">
@@ -82,6 +112,10 @@
 </article>
 
 <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2020/03/21/%E5%8D%95%E8%B0%83%E6%A0%88/">
+        ← prev <!--单调栈-->
+    </a>
     
     <span class="page-number">•</span>
     

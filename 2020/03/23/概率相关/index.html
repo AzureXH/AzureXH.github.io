@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="/logo.png"/>
         <link rel="canonical" href="http://guolinn.com/">
         <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
-        <title>TCP三次握手 | Azure XH</title>
+        <title>概率相关 | Azure XH</title>
         <meta name="description" content="{{meta_description}}">
 
         <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -41,24 +41,27 @@
         
 
 <article class="post">
-  March 19, 2020
+  March 23, 2020
   
 
-  <h1 class="post-title">TCP三次握手</h1>
+  <h1 class="post-title">概率相关</h1>
   <section class="post-content article-entry">
-    <h2 id="PAR协议"><a href="#PAR协议" class="headerlink" title="PAR协议"></a>PAR协议</h2><p>首先要知道TCP可靠传输是依赖于PAR协议的，即支持重传的肯定确认协议（Positive Acknowledgement with Re-transmission）。</p>
-<p>传输层的协议数据单元叫做段(Segment)，现在一个设备使用PAR重发单元数据，直到受到一个确认(acknowledgement)。如果在接收端收到了损坏的数据单元，接收端就会抛弃这个段。所以发送方将会重发那些没有收到确认的数据单元。</p>
-<ul>
-<li>Step 1 (SYN) : 第一步，客户端想要跟服务器建立连接，首先会发送一个含有SYN信号的报文，告知服务器，客户端想要跟他进行连接，并且告诉服务器，客户端将从哪个序号开始发送数据</li>
-<li>Step 2 (SYN + ACK): 服务器使用设置的SYN-ACK信号位响应客户端请求。ACK表示服务器接收到了上一步中客户端发送的报文，而SYN表示服务器将从哪里开始发送数据</li>
-<li>Step 3 (ACK) : 最后一步，客户端收到了服务器的相应并且建立了一个可靠连接，并以此传输数据。</li>
+    <ul>
+<li>头文件&lt;cstdlib&gt;</li>
+<li>函数rand()和srand(unsined int seed)</li>
+<li>用时间做种子需要头文件&lt;ctime&gt;</li>
+<li>rand()默认种子为1，RAND_MAX的值为32767</li>
 </ul>
-<h2 id="为什么不是二次握手？"><a href="#为什么不是二次握手？" class="headerlink" title="为什么不是二次握手？"></a>为什么不是二次握手？</h2><ul>
-<li>如果是二次握手，客户端发送SYN给服务器，假设这个SYN堵塞了，长期滞留在某个节点。</li>
-<li>再假设客户端与服务器又成功建立了连接，在连接释放后</li>
-<li>如果滞留的那个SYN到达了服务器，服务器就会以为客户端要建立连接，于是创建Socket套接字，等待客户端发送数据。</li>
-<li>于是返回SYN+ACK信号给客户端，可是客户端并没有要建立连接，于是会把这个SYN+ACK信号抛弃，而服务器就一直在等待客户端发送数据。</li>
-<li>这就是二次握手的弊端，会出现滞留的SYN报文发送给服务器，造成服务器资源浪费。</li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">srand(<span class="keyword">int</span>(time(<span class="literal">NULL</span>)));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; rand() /<span class="keyword">double</span>(RAND_MAX)&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用公式"><a href="#常用公式" class="headerlink" title="常用公式"></a>常用公式</h2><p><a href="https://blog.csdn.net/baidu_41560343/article/details/88830374" target="_blank" rel="noopener">https://blog.csdn.net/baidu_41560343/article/details/88830374</a></p>
+<ul>
+<li>产生一定范围随机数的通用表示公式是：</li>
+<li>取得[0,x)的随机<strong>整数</strong>：rand()%x；</li>
+<li>取得[a,b)的随机<strong>整数</strong>：rand()%(b-a)+a；</li>
+<li>取得[a,b]的随机<strong>整数</strong>：rand()%(b-a+1)+a；</li>
+<li>取得(a,b]的随机<strong>整数</strong>：rand()%(b-a)+a+1；</li>
+<li>取得0-1之间的<strong>浮点数</strong>：rand()/double(RAND_MAX)</li>
 </ul>
 
   </section>
@@ -74,14 +77,10 @@
 
 <nav class="pagination" role="pagination">
     
-    <a class="newer-posts" href="/2020/03/19/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
-        ← prev <!--TCP四次挥手-->
-    </a>
-    
     <span class="page-number">•</span>
     
-    <a class="older-posts" href="/2020/03/19/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
-        <!--面试准备--> next →
+    <a class="older-posts" href="/2020/03/22/c++%20resize%E5%92%8Creserve/">
+        <!--c++ resize和reserve--> next →
     </a>
     
 </nav>
