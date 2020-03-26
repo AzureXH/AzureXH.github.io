@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <link rel="shortcut icon" href="/logo.png"/>
+        <link rel="canonical" href="http://guolinn.com/">
+        <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
+        <title>寻找数组中重复的数字 | Azure XH</title>
+        <meta name="description" content="{{meta_description}}">
+
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/styles/crisp.css">
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <meta name="generator" content="Hexo 4.1.0"></head>
+    
+		<body class="post-template">
+	
+
+        <header id="header">
+            <a id="logo" href="/"><img src="/logo.png" alt="Azure XH" /></a>
+            <h1><a href="/">AzureXH</a></h1>
+            <p></p>
+            <div id="follow-icons">
+          <a href="http://github.com/AzureXH" target="_blank" rel="noopener"><i class="fa fa-github-square fa-2x"></i></a>
+          </div>
+<h6><a href="/about">About</a></h6>
+        </header>
+
+        <main id="content">
+        
+
+<article class="post">
+  March 23, 2020
+  
+
+  <h1 class="post-title">寻找数组中重复的数字</h1>
+  <section class="post-content article-entry">
+    <p>参考：</p>
+<p><a href="https://blog.nowcoder.net/n/808e31c3b2424647a3743aad6e2831e7?f=comment" target="_blank" rel="noopener">https://blog.nowcoder.net/n/808e31c3b2424647a3743aad6e2831e7?f=comment</a></p>
+<p>主要思想是归位，把<strong>数组中每个数字放回到与下标对应的位置上</strong>。</p>
+<p>遍历数组中的每一个数，作如下操作</p>
+<ul>
+<li>nums[i] = i，说明当前数字位置正确了。继续遍历下一个</li>
+<li>nums[i] != i，说明当前数字位置不正确<ul>
+<li><strong>比较nums[i]与nums[nums[i]]</strong>，这样比较的目的就是为了确定<strong>是否重复</strong>。</li>
+<li>比如i = 0，nums[i] = 2，（注意前提已经确定nums[i] != i），那么nums[nums[i]]就是nums[2]</li>
+<li>nums[i]!=nums[nums[i]]时，即2！=nums[2]，说明数组位置为2的数是不正确的，于是进行交换操作。</li>
+<li>nums[i] == nums[nums[i]]时，即2==nums[2]，说明数组重复了。</li>
+</ul>
+</li>
+</ul>
+<p>需要特别分清楚，下标i，数组下标i的数字，以及nums[nums[i]]这三者的关系（套娃。。）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">duplicate</span><span class="params">(<span class="keyword">int</span> numbers[], <span class="keyword">int</span> length, <span class="keyword">int</span>* duplication)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;numbers.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i]!=i)  <span class="comment">//当前数字没有归位</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(nums[i]!=i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//没有重复，进行交换</span></span><br><span class="line">                <span class="keyword">if</span>(nums[i]!=nums[nums[i]])</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//注意这里的交换有点阴险</span></span><br><span class="line">                    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">                    nums[i] = nums[temp];</span><br><span class="line">                    nums[temp] = temp;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>    <span class="comment">//重复了</span></span><br><span class="line">                &#123;</span><br><span class="line">                    duplication[<span class="number">0</span>] = nums[i];</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </section>
+  <footer class="post-footer">
+    <!--
+    <section class="author">
+      <h4>AzureXH</h4>
+      <p></p>
+    </section>
+    -->
+  </footer>
+</article>
+
+<nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2020/03/23/%E6%A6%82%E7%8E%87%E7%9B%B8%E5%85%B3/">
+        <!--概率相关--> next →
+    </a>
+    
+</nav>
+<div id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'AzureXH';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" target="_blank" rel="noopener" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+        </main>
+        <footer id="footer">
+            <section id="footer-message">&copy; 2020 AzureXH. All rights reserved. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. <a href="https://github.com/guolin/crisp-hexo-theme" target="_blank">crisp</a> theme by <a href="https://github.com/guolin/crisp-hexo-theme" target="_blank">Guo Lin</a>.</section>
+        </footer>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','/js/ga.js','ga');
+            ga('create', 'UA-00000000-0', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>
+
+
