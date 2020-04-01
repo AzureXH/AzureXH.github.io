@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="/logo.png"/>
         <link rel="canonical" href="http://guolinn.com/">
         <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
-        <title>c++ const与指针 | Azure XH</title>
+        <title>进程与线程 | Azure XH</title>
         <meta name="description" content="{{meta_description}}">
 
         <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -41,28 +41,16 @@
         
 
 <article class="post">
-  January 14, 2020
-  
-    <span class="taglist">  &middot; 
-    
-    
-      <a href='/tags/c/'>c++</a> 
-    
-    </span>
+  March 30, 2020
   
 
-  <h1 class="post-title">c++ const与指针</h1>
+  <h1 class="post-title">进程与线程</h1>
   <section class="post-content article-entry">
-    <h2 id="指向常量的指针-Pointer-to-const-value"><a href="#指向常量的指针-Pointer-to-const-value" class="headerlink" title="指向常量的指针(Pointer to const value)"></a>指向常量的指针(Pointer to const value)</h2><p>const int* ptr 为指向常量的指针，可以用常量赋值，也可以用非常量赋值，但是赋值后，会将所赋值的变量视为常量，<em>重点在于该指针无法修改</em> <strong>指向的变量的内容</strong></p>
-<h2 id="常量指针-Constant-pointers"><a href="#常量指针-Constant-pointers" class="headerlink" title="常量指针(Constant pointers)"></a>常量指针(Constant pointers)</h2><p>int* const ptr为常量指针，该指针被初始化后，<strong>无法</strong>再改变它<strong>所指向的地址</strong>，但还是可以像一个正常的指针一样，<strong>可以修改指向的变量的内容的</strong>。</p>
-<h2 id="指向常量的常量指针-Const-pointer-to-a-const-value"><a href="#指向常量的常量指针-Const-pointer-to-a-const-value" class="headerlink" title="指向常量的常量指针(Const pointer to a const value)"></a>指向常量的常量指针(Const pointer to a const value)</h2><p>const int* const ptr</p>
-<p>上面二者的综合</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>只要*号紧靠左边写就很好读了。</p>
-<p>T* ptr表示ptr为指向变量类型为T的指针，再根据const的位置判断。</p>
-<p>如果const 在T*的左边，说明const修饰的是T，即指向的变量为常量。</p>
-<p>如果const 在T*的右边，直接读成 const ptr，说明const修饰的是ptr，即指针是常量。</p>
-<h3 id="更好的方式"><a href="#更好的方式" class="headerlink" title="更好的方式"></a>更好的方式</h3><p>将const int* const ptr从右往左念，*念作 <strong>“which points to”</strong>，于是整个读法就是，a const pointer <strong>which points to</strong> a const int</p>
-
+    <p>参考</p>
+<p><a href="https://github.com/labuladong/fucking-algorithm/blob/master/%E6%8A%80%E6%9C%AF/linux%E8%BF%9B%E7%A8%8B.md" target="_blank" rel="noopener">https://github.com/labuladong/fucking-algorithm/blob/master/%E6%8A%80%E6%9C%AF/linux%E8%BF%9B%E7%A8%8B.md</a></p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>正在执行的程序。</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>进程状态、进程号、虚拟内存空间、父进程指针、子进程列表、存放文件系统信息的指针、该进程打开的文件指针</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line">	<span class="comment">// 进程状态</span></span><br><span class="line">	<span class="keyword">long</span>			  state;</span><br><span class="line">	<span class="comment">// 虚拟内存结构体</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">mm_struct</span>  *<span class="title">mm</span>;</span></span><br><span class="line">	<span class="comment">// 进程号</span></span><br><span class="line">	<span class="keyword">pid_t</span>			  pid;</span><br><span class="line">	<span class="comment">// 指向父进程的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> __<span class="title">rcu</span>  *<span class="title">parent</span>;</span></span><br><span class="line">	<span class="comment">// 子进程列表</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">list_head</span>		<span class="title">children</span>;</span></span><br><span class="line">	<span class="comment">// 存放文件系统信息的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">fs_struct</span>		*<span class="title">fs</span>;</span></span><br><span class="line">	<span class="comment">// 一个数组，包含该进程打开的文件指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span>		*<span class="title">files</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
   </section>
   <footer class="post-footer">
     <!--
@@ -76,14 +64,14 @@
 
 <nav class="pagination" role="pagination">
     
-    <a class="newer-posts" href="/2020/01/22/Leetcode-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%E7%9A%84%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95/">
-        ← prev <!--Leetcode-反转链表的递归方法-->
+    <a class="newer-posts" href="/2020/03/30/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+        ← prev <!--动态规划-->
     </a>
     
     <span class="page-number">•</span>
     
-    <a class="older-posts" href="/2020/01/14/Leetcode-%E7%A7%BB%E5%8A%A8%E9%9B%B6%E4%B8%8E%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
-        <!--Leetcode-移动零与移除元素--> next →
+    <a class="older-posts" href="/2020/03/23/%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/">
+        <!--寻找数组中重复的数字--> next →
     </a>
     
 </nav>
