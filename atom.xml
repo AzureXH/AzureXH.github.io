@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-03T16:07:29.237Z</updated>
+  <updated>2020-04-03T16:09:03.656Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2020/04/04/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
     <id>http://yoursite.com/2020/04/04/%E5%8D%95%E8%B0%83%E6%A0%88/</id>
     <published>2020-04-03T16:01:16.000Z</published>
-    <updated>2020-04-03T16:07:29.237Z</updated>
+    <updated>2020-04-03T16:09:03.656Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>首先要知道这个东西的遍历方向是跟常识相反的。</strong></p><p>单调栈一般用于找<strong>下一个最大的数</strong>的问题，比如一群人排队，一个人向右看，能看到的最高的人在哪个位置。</p><p>正常的想法肯定是从这个人开始，从左向右遍历（代表往右看）找一个最大值。</p><p>但是单调栈不是这样，单调栈是从右向左遍历，获取一个从大到小的递减序列，而栈底是这个序列的最大值。</p>]]></content>
+    <content type="html"><![CDATA[<p><strong>首先要知道这个东西的遍历方向是跟常识相反的。</strong></p><p>单调栈一般用于找<strong>下一个最大的数</strong>的问题，比如一群人排队，一个人向右看，能看到的最高的人在哪个位置。</p><p>正常的想法肯定是从这个人开始，从左向右遍历（代表往右看）找一个最大值。</p><p>但是单调栈不是这样，<strong>单调栈是从右向左遍历，找到一个很大的值</strong>，获取一个从大到小的单调递减序列，而栈底是这个序列的最大值。</p>]]></content>
     
     <summary type="html">
     
