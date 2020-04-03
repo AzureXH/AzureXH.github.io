@@ -62,7 +62,14 @@
 <p>a[1]+2代表的是a[1][2]的地址…</p>
 <p>所以a[i]+j==&amp;a[i][j]就不难理解了</p>
 <p>那么给一个*(a+i)+j，先看括号里面。</p>
-<p>a+i代表的是a[i]的首地址（因为这里是二维数组，要注意二维数组和一维数组的处理上有些不同），*(a+i)就是a[i]的首地址，</p>
+<p>a+i代表的是a[i]的首地址（这里还是二维数组）。</p>
+<p>*(a+i)还是a[i]的首地址，但是*(a+i)这里转变成一维数组a[i]了。</p>
+<p>那么<em>(a+i)+j就是a[i][j]的首地址了，而</em>(*(a+i)+j)则是a[i][j]的值。</p>
+<p>再回到开头的声明</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>][<span class="number">3</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>(*prt)[<span class="number">3</span>] = a;</span><br><span class="line"><span class="keyword">int</span>* p = a[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+
+<p>这里prt是个二维数组指针，prt指向的是a的首地址，将它视为a即可。</p>
+<p>而p是个一维数组指针，视为a[0]处理即可。</p>
 
   </section>
   <footer class="post-footer">
@@ -76,6 +83,10 @@
 </article>
 
 <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2020/04/04/%E5%8D%95%E8%B0%83%E6%A0%88/">
+        ← prev <!--单调栈-->
+    </a>
     
     <span class="page-number">•</span>
     

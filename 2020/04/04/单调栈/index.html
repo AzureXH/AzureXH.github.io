@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="/logo.png"/>
         <link rel="canonical" href="http://guolinn.com/">
         <link rel="alternate" type="application/rss+xml" title="AzureXH" href="">
-        <title>Archives: 2020/4 | Azure XH</title>
+        <title>单调栈 | Azure XH</title>
         <meta name="description" content="{{meta_description}}">
 
         <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
 
     <meta name="generator" content="Hexo 4.1.0"></head>
     
-		<body class="home-template">
+		<body class="post-template">
 	
 
         <header id="header">
@@ -39,47 +39,52 @@
 
         <main id="content">
         
-<section id="{{id}}" class="{{post_class}}">
-  <h3 class="post-title">
-  <a href="/2020/04/04/单调栈/">单调栈</a>
-  
-  <span class="separator"> &middot; </span>
-  
+
+<article class="post">
   April 4, 2020
   
-  
-  </h3>
-</section>
 
-<section id="{{id}}" class="{{post_class}}">
-  <h3 class="post-title">
-  <a href="/2020/04/02/二维数组与指针/">二维数组与指针</a>
-  
-  <span class="separator"> &middot; </span>
-  
-  April 2, 2020
-  
-  
-  </h3>
-</section>
+  <h1 class="post-title">单调栈</h1>
+  <section class="post-content article-entry">
+    <p><strong>首先要知道这个东西的遍历方向是跟常识相反的。</strong></p>
+<p>单调栈一般用于找<strong>下一个最大的数</strong>的问题，比如一群人排队，一个人向右看，能看到的最高的人在哪个位置。</p>
+<p>正常的想法肯定是从这个人开始，从左向右遍历（代表往右看）找一个最大值。</p>
+<p>但是单调栈不是这样，单调栈是从右向左遍历，获取一个从大到小的递减序列，而栈底是这个序列的最大值。</p>
 
-<section id="{{id}}" class="{{post_class}}">
-  <h3 class="post-title">
-  <a href="/2020/04/01/c++ inline/">c++ inline与#define</a>
-  
-  <span class="separator"> &middot; </span>
-  
-  April 1, 2020
-  
-  
-  </h3>
-</section>
+  </section>
+  <footer class="post-footer">
+    <!--
+    <section class="author">
+      <h4>AzureXH</h4>
+      <p></p>
+    </section>
+    -->
+  </footer>
+</article>
 
 <nav class="pagination" role="pagination">
-  
-  <span class="page-number">Page 1 of 1</span>
-  
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2020/04/02/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%8E%E6%8C%87%E9%92%88/">
+        <!--二维数组与指针--> next →
+    </a>
+    
 </nav>
+<div id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'AzureXH';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" target="_blank" rel="noopener" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
 
         </main>
         <footer id="footer">
